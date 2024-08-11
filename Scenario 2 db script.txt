@@ -1,0 +1,38 @@
+WITH AuthorPosts AS (
+    SELECT 
+        p.id AS post_id,
+        p.name AS post_name,
+        p.createdts AS post_createdts
+    FROM 
+        post p
+        JOIN author a ON p.authorid = a.id
+    WHERE 
+        a.name = 'James Bond'
+),
+LatestComments AS (
+    SELECT 
+        c.id AS comment_id,
+        c.content AS comment_content,
+        c.postid AS post_id,
+        c.createdts AS comment_createdts,
+        c.userid AS user_id,
+        ROW_NUMBER() OVER (PARTITION BY c.postid ORDER BY c.createdts DESC) AS rn
+    FROM 
+        comment c
+)
+SELECT 
+    ap.post_id,
+    ap.post_name,
+    ap.post_createdts,
+    lc.comment_id,
+    lc.comment_content,
+    lc.comment_createdts,
+    lc.user_id
+FROM 
+    AuthorPosts ap
+    JOIN LatestComments lc ON ap.post_id = lc.post_id
+WHERE 
+    lc.rn <= 10
+ORDER BY 
+    ap.post_createdts DESC,
+    lc.comment_createdts DESC;

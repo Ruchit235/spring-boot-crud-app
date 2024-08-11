@@ -1,0 +1,68 @@
+POST /api/products
+--------------------------------
+
+{
+  "name": "Laptop",
+  "description": "A high-end gaming laptop",
+  "price": 1500.00
+}
+-----------------------------------
+
+Response
+
+{
+  "id": 1,
+  "name": "Laptop",
+  "description": "A high-end gaming laptop",
+  "price": 1500.00
+}
+
+------------------------------------------
+
+
+
+GET /api/products/1
+----------------------------------------------
+{
+  "id": 1,
+  "name": "Laptop",
+  "description": "A high-end gaming laptop",
+  "price": 1500.00
+}
+------------------------------------------------
+
+Response :
+
+{
+  "id": 1,
+  "name": "Laptop",
+  "description": "A high-end gaming laptop",
+  "price": 1500.00
+}
+-----------------------------------------------
+
+
+PUT /api/products/1
+----------------------------------------------------
+{
+  "name": "Laptop Pro",
+  "description": "An updated version of the high-end gaming laptop",
+  "price": 1800.00
+}
+
+-----------------------------------------------------
+
+Response :
+
+{
+  "id": 1,
+  "name": "Laptop Pro",
+  "description": "An updated version of the high-end gaming laptop",
+  "price": 1800.00
+}
+-------------------------------------------------
+
+DELETE /api/products/1
+
+
+
